@@ -30,17 +30,19 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> 
   <div id="content">
     
   </div>
   <div class="container">
+  
+  <% for (i=0 ; i < cityList.length ; i++) { %>
     <div class="row">
       <div class="col-xs-12 col-sm-offset-2 col-sm-8">
         <ul class="list-group">
-          <li class="list-group-item"><span class="city">Lyon</span> <img class="logo-meteo" src="http://openweathermap.org/img/w/02d.png"> <span class="desc">nuageux</span> <span class="label label-warning">26 °C</span> <span class="label label-default">17 °C</span> <a href=""><span class="glyphicon glyphicon-remove-circle"></span></a></li>
-          <li class="list-group-item"><span class="city">Paris</span> <img class="logo-meteo" src="http://openweathermap.org/img/w/01d.png"> <span class="desc">ciel dégagé</span> <span class="label label-warning">24.3 °C</span> <span class="label label-default">13.2 °C</span> <a href=""><span class="glyphicon glyphicon-remove-circle"></span></a></li>
-          <li class="list-group-item"><span class="city">Marseille</span> <img class="logo-meteo" src="http://openweathermap.org/img/w/01d.png"> <span class="desc">ciel dégagé</span> <span class="label label-warning">22.4 °C</span> <span class="label label-default">14 °C</span> <a href=""><span class="glyphicon glyphicon-remove-circle"></span></a></li>
+          <li class="list-group-item"><span class="city"> <%= cityList[i].name %></span><img class="logo-meteo" src="http://openweathermap.org/img/w/<%= cityList[i].weather[0].icon %>.png"> <span class="desc"><%= cityList[i].weather[0].description %></span> <span class="label label-warning"><%= cityList[i].main.temp_max %></span> <span class="label label-default"><%= cityList[i].main.temp_min %></span> <a href=""><span class="glyphicon glyphicon-remove-circle"></span></a></li>
+           <% } %> 
+          
         </ul>
       </div>
     </div>
