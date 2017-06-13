@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 
 app.get('/add', function (req, res) {
 	
-if (req.query.ville.length > 0) {
+if (req.query.ville.length > 2) {
 	request("http://api.openweathermap.org/data/2.5/weather?q="+req.query.ville+"&lang=fr&units=metric&APPID=259faf4a51fb2d5718cb5f8cb002bc31", function(error, response, body) {
    
     cityList.push(JSON.parse(body));
