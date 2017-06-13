@@ -3,11 +3,39 @@ var app = express();
 app.set('view engine', 'ejs');
 
 
+
 app.get('/', function (req, res) {
     res.render('index.ejs');
     console.log("page chargée");
+
+var request = require('request');
+
+var cityList = [];
+
+
+request("http://api.openweathermap.org/data/2.5/weather?q=Paris&lang=fr&units=metric&APPID=259faf4a51fb2d5718cb5f8cb002bc31", function(error, response, body) {
+   
+    cityList.push(JSON.parse(body));
+});
+
+app.get('/', function (req, res) {
+    res.render('index', {cityList : cityList});
+});
+
+app.get('/add', function (req, res) {
+    res.render('index', {cityList : cityList});
+});
+
+app.get('/delete', function (req, res) {
+    res.render('index', {cityList : cityList});
 });
 
 app.listen(8080, function () {
   console.log("Server listening on port 8080");
 });
+
+
+
+
+//http://api.openweathermap.org/data/2.5/weather?q=Paris&lang=fr&units=metric&APPID=259faf4a51fb2d5718cb5f8cb002bc31
+
