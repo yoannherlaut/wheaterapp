@@ -8,21 +8,26 @@ var request = require('request');
 var cityList = [];
 
 
-request("http://api.openweathermap.org/data/2.5/weather?q=Paris&lang=fr&units=metric&APPID=259faf4a51fb2d5718cb5f8cb002bc31", function(error, response, body) {
-   
-    cityList.push(JSON.parse(body));
-});
-
 app.get('/', function (req, res) {
     res.render('index', {cityList : cityList});
 });
 
 app.get('/add', function (req, res) {
-	console.log(req.query);
+	
+if (req.query.ville.length > 0) {
+	request("http://api.openweathermap.org/data/2.5/weather?q="+req.query.ville+"&lang=fr&units=metric&APPID=259faf4a51fb2d5718cb5f8cb002bc31", function(error, response, body) {
+   
+    cityList.push(JSON.parse(body));
     res.render('index', {cityList : cityList});
+})
+}
+
 });
 
+
 app.get('/delete', function (req, res) {
+console.log(req.query.i);
+	cityList.splice(req.query.i, 1);
     res.render('index', {cityList : cityList});
 });
 
